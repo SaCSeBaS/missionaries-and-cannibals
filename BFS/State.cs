@@ -66,20 +66,22 @@ namespace BFS
                 if (hijo.EsValido())
                     Hijos.Add(hijo);
 
-                hijo = new State(CanibalesIzquierda - 2, MisionerosIzquierda, CanibalesDerecha + 2, MisionerosDerecha, false); // 2 CANIBALES CRUZAN A LA DERECHA
+                hijo = new State(CanibalesIzquierda - 2, MisionerosIzquierda, CanibalesDerecha + 2, MisionerosDerecha, true); // 2 CANIBALES CRUZAN A LA DERECHA
                 if (hijo.EsValido())
                     Hijos.Add(hijo);
 
-                hijo = new State(CanibalesIzquierda, MisionerosIzquierda - 2, CanibalesDerecha, MisionerosDerecha + 2, false); // 2 MISIONEROS CRUZAN A LA DERECHA
+                hijo = new State(CanibalesIzquierda, MisionerosIzquierda - 2, CanibalesDerecha, MisionerosDerecha + 2, true); // 2 MISIONEROS CRUZAN A LA DERECHA
                 if (hijo.EsValido())
                     Hijos.Add(hijo);
             }
         }
 
         public bool EsValido() // VERIFICAR VÁLIDEZ 
-            => (MisionerosIzquierda >= 0 && MisionerosDerecha >= 0 && CanibalesIzquierda >= 0 && CanibalesDerecha >= 0) // VALIDAR NÚMEROS
+            => ((MisionerosIzquierda >= 0 && MisionerosDerecha >= 0 && CanibalesIzquierda >= 0 && CanibalesDerecha >= 0) // VALIDAR NÚMEROS MAYORES A 0
+                && (MisionerosIzquierda <= 3 && MisionerosDerecha <= 3 && CanibalesIzquierda <= 3 && CanibalesDerecha <= 3) // VALIDAR NÚMEROS MENORES A 3
                 && (MisionerosIzquierda == 0 || MisionerosIzquierda >= CanibalesIzquierda) // VALIDAR EQUIDAD EN LA IZQUIERDA
-                && (MisionerosDerecha == 0 || MisionerosDerecha >= CanibalesDerecha);
+                && (MisionerosDerecha == 0 || MisionerosDerecha >= CanibalesDerecha) // VALIDAR EQUIDAD EN LA DERECHA
+                && (Bote == true || Bote == false)); // VALIDAR QUE EL VALOR DEL BOTE SEA TRUE O FALSE
 
         public bool EsFinal() => CanibalesDerecha == 0 && MisionerosDerecha == 0;// VERIFICAR SI SE LLEGÓ AL ESTADO FINAL
 

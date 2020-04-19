@@ -8,6 +8,7 @@ namespace BFS
     {
         public State BreadthFirstSearch(State estadoInicial)
         {
+            State actual;
             List<State> queue = new List<State>
             {
                 estadoInicial // AGREGAR EL PRIMER ESTADO AL QUEUE
@@ -15,7 +16,7 @@ namespace BFS
 
             while (queue.Count > 0) // MIENTRAS EXISTAN ELEMENTOS DONDE BUSCAR
             {
-                State actual = queue[0]; // OBTENER EL SIGUIENTE ELEMENTO EN EL QUEUE
+                actual = queue[0]; // OBTENER EL SIGUIENTE ELEMENTO EN EL QUEUE
                 queue.RemoveAt(0); // ELIMINAR EL ELEMENTO DE LA LISTA
 
                 if (actual.EsFinal()) // ENCONTRÓ EL ESTADO FINAL
